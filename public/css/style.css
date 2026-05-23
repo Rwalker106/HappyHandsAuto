@@ -1,0 +1,928 @@
+:root {
+  --primary-color: #305cd0; /* Royal Blue */
+  --secondary-color: #efbf04; /* Gold */
+  --frost-white: #f8faff; /* Frost White - main background */
+  --deep-navy: #0f172a; /* Deep Navy - header & dark anchors */
+  --steel-blue: #4a78c4; /* Steel Blue - complementary mid-tone */
+  --silver-mist: #e2e8f4; /* Silver Mist - section & card backgrounds */
+  --slate-gray: #64748b; /* Slate Gray - body text & subtle accents */
+
+  /* Legacy aliases (keep existing rules working) */
+  --primary-accent-color: var(--frost-white); /* Used for body background */
+  --secondary-accent-color: var(--silver-mist);
+  --tertiary-accent-color: var(--deep-navy); /* Used for header background */
+  --mid-tone-accent-color: var(
+    --steel-blue
+  ); /* Used for cards and highlights */
+  --section-bg-color: var(--primary-color); /* Used for section backgrounds */
+  --body_text-color: var(--slate-gray);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--primary-accent-color);
+  color: var(--body_text-color);
+  -webkit-font-smoothing: antialiased;
+  /* Prevent tap flash on iOS */
+  -webkit-tap-highlight-color: transparent;
+}
+
+header {
+  padding-top: env(safe-area-inset-top);
+  /* Combine base padding with safe-area so neither overrides the other */
+  padding-bottom: calc(15px + env(safe-area-inset-bottom));
+  position: -webkit-sticky; /* Safari < 13 */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid rgba(239, 191, 4, 0.2);
+  background-color: rgba(15, 23, 42, 0.85); /* Deep Navy semi-transparent */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  font-size: 36px;
+  color: var(--secondary-color);
+  text-align: center;
+  margin-top: 10px;
+}
+
+h2 {
+  font-size: 36px;
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.hero-seal {
+  position: absolute;
+  top: 200px;
+  left: 350px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--secondary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  border: 4px double #aa8010;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Georgia", serif;
+  color: #4a3600;
+  padding: 10px;
+  box-sizing: border-box;
+  transform: rotate(-20deg);
+  transform-origin: center center;
+  z-index: 3;
+}
+.seal-number {
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.seal-text {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+}
+.navbar .logo img {
+  height: 6.5rem; /* ~104px at default font size */
+  width: auto;
+  border-radius: 50%; /* Make the logo circular if needed */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.navbar-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  gap: 5px;
+}
+
+.nav-btn-pri {
+  background-color: var(--primary-color);
+  color: var(--primary-accent-color);
+  padding: 10px 20px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 9999px;
+}
+.nav-btn-pri:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* fallback for iOS 15 and older Safari */
+  height: 100dvh; /* modern Safari 16+ / iOS 16+ */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 5px solid var(--secondary-accent-color);
+  background-color: var(--tertiary-accent-color);
+}
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  -webkit-object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: var(--frost-white);
+}
+.hero-content h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.btn-secondary {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--secondary-accent-color), #002d80);
+  color: var(--secondary-color);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 9999px;
+  margin-top: 3rem;
+  width: 150px;
+  align-self: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 74, 194, 0.3);
+  background-color: var(--primary-color);
+  color: var(--primary-accent-color);
+  border: 2px solid var(--primary-accent-color);
+}
+.btn-pulse {
+  padding: 12px 24px;
+  background-color: #d4af37; /* Example Gold color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+
+  /* Runs the 'pulse-animation' infinitely every 2 seconds */
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+  70% {
+    transform: scale(1.05); /* Grows slightly */
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); /* Fades an outer ring out */
+  }
+  100% {
+    transform: scale(1); /* Shrinks back down */
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+.packages-section {
+  position: relative;
+}
+.package-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  -webkit-object-fit: cover;
+}
+.packages-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.packages-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+}
+.upcharge {
+  color: var(--slate-gray);
+  font-size: 0.75em;
+  font-style: italic;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.section {
+  padding: 60px 20px;
+  background-color: var(--section-bg-color);
+  border-bottom: 1px solid var(--secondary-accent-color);
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.card {
+  background-color: var(--frost-white);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+.card-header {
+  margin-bottom: 15px;
+}
+.card-header h3 {
+  color: var(--deep-navy);
+  font-size: 22px;
+}
+.card-features {
+  background-color: var(--silver-mist);
+  margin: 15px 0 25px 0;
+  padding: 20px;
+  width: 100%;
+  border-radius: 8px;
+  color: var(--primary-color);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  list-style-type: none;
+  text-align: left;
+}
+.card-features li {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.card-features li:last-child {
+  margin-bottom: 0;
+}
+.card-btn {
+  display: inline-block;
+  margin-top: auto;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: var(--frost-white);
+  text-decoration: none;
+  border-radius: 9999px;
+  font-weight: bold;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+.card-btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--deep-navy);
+  transform: scale(1.05);
+}
+
+.package-price {
+  font-size: 14px;
+  color: var(--slate-gray);
+  margin-bottom: 14px;
+}
+.package-price span {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+/* --- Redesign Additions --- */
+
+/* Navigation Link Hover */
+.nav-btn-pri {
+  position: relative;
+  border: none;
+  background: transparent;
+  color: var(--secondary-color);
+  padding: 10px 15px;
+}
+.nav-btn-pri::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 5px;
+  left: 15px;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease;
+}
+.nav-btn-pri:hover {
+  background: transparent;
+  color: var(--secondary-color);
+}
+.nav-btn-pri:hover::after {
+  width: calc(100% - 30px);
+}
+
+/* Typography Text Shadow on Hero */
+.hero-content h2 {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Card Icons & Badges */
+.card-icon {
+  font-size: 48px;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+.badge {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: var(--secondary-color);
+  color: var(--deep-navy);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.card {
+  position: relative;
+}
+
+/* Background Variations */
+.bg-alternate {
+  background-color: var(--silver-mist);
+  border-bottom: 1px solid var(--primary-accent-color);
+}
+
+/* Contact Section Grid */
+.contact-section-wrapper {
+  background-color: var(--deep-navy);
+  color: var(--frost-white);
+  padding: 80px 20px;
+  border-bottom: none;
+}
+.contact-section-wrapper h2 {
+  color: var(--secondary-color);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+.about-us {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-info {
+  margin-top: 1rem;
+}
+
+.contact-info p {
+  margin-bottom: 15px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-info i {
+  font-size: 24px;
+  color: var(--secondary-color);
+}
+
+/* Contact Form Container (Lower Right) */
+.contact-form-container {
+  background-color: var(--frost-white);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  align-self: flex-end; /* This aligns it to the lower part of its grid cell */
+}
+.contact-form h3 {
+  margin-bottom: 20px;
+  color: var(--deep-navy);
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  /* 16px prevents iOS Safari from auto-zooming on focus */
+  font-size: 16px;
+  /* Remove iOS default inner shadow and rounded corners */
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--silver-mist);
+  transition: border-color 0.3s ease;
+  color: var(--deep-navy);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+.contact-form button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.longevity {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+.email-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.email-link:hover {
+  color: var(--primary-color);
+}
+
+.phone-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+.phone-link:hover {
+  color: var(--secondary-color);
+}
+
+.map-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+.map-link:hover {
+  color: var(--primary-color);
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--deep-navy);
+  color: var(--silver-mist);
+  text-align: center;
+  padding: 20px;
+  /* Extend bottom padding into iPhone home-indicator safe area */
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-legal-links {
+  margin-top: 10px;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-legal-links a {
+  color: var(--slate-gray);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-legal-links a:hover {
+  color: var(--secondary-color);
+}
+.footer-legal-links span {
+  color: var(--slate-gray);
+}
+
+.payment-methods {
+  width: 100%;
+  max-width: 600px;
+  margin: 18px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 0;
+}
+
+.payment-label {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--slate-gray);
+  margin-bottom: 12px;
+}
+
+.payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.payment-icons .fa-brands,
+.payment-icons .fa-solid {
+  font-size: 36px;
+  color: var(--silver-mist);
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.payment-icons .fa-cc-visa:hover {
+  color: #1a1f71;
+}
+.payment-icons .fa-cc-mastercard:hover {
+  color: #eb001b;
+}
+.payment-icons .fa-cc-amex:hover {
+  color: #007bc1;
+}
+.payment-icons .fa-cc-discover:hover {
+  color: #f76f20;
+}
+.payment-icons .fa-paypal:hover {
+  color: #009cde;
+}
+.payment-icons .fa-apple-pay:hover {
+  color: #ffffff;
+}
+.payment-icons .fa-google-pay:hover {
+  color: #4285f4;
+}
+.payment-icons .fa-money-bill-wave:hover {
+  color: #4caf50;
+}
+
+.payment-icons .fa-brands:hover,
+.payment-icons .fa-solid:hover {
+  transform: translateY(-3px);
+}
+
+.payment-text-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--silver-mist);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.payment-text-badge:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+/* Gallery layout */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.gallery-img-container {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.gallery-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+.gallery-img-container:hover img {
+  transform: scale(1.1);
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ---------- Tablet & below (≤ 900px) ---------- */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-form-container {
+    align-self: auto;
+  }
+}
+
+/* ---------- Mobile landscape & tablet portrait (≤ 768px) ---------- */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .navbar .logo img {
+    height: 5rem; /* ~80px at default font size */
+  }
+
+  h1 {
+    font-size: 22px;
+    margin-top: 6px;
+  }
+
+  .navbar-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* Hero seal — reposition from hard-coded desktop coords */
+  .hero-seal {
+    top: 16px;
+    left: 16px;
+    width: 110px;
+    height: 110px;
+  }
+
+  .seal-number {
+    font-size: 20px;
+  }
+
+  .seal-text {
+    font-size: 10px;
+  }
+
+  /* Hero content */
+  .hero-content h2 {
+    font-size: 32px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+    padding: 0 10px;
+  }
+
+  /* Section headings */
+  h2 {
+    font-size: 28px;
+  }
+
+  /* Section padding */
+  .section {
+    padding: 50px 16px;
+  }
+
+  /* Contact */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .contact-section-wrapper {
+    padding: 60px 16px;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Mobile portrait (≤ 480px) ---------- */
+@media (max-width: 480px) {
+  /* Navbar */
+  .navbar .logo img {
+    height: 3.75rem; /* ~60px at default font size */
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .nav-btn-pri {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Hero seal — smaller on tiny screens */
+  .hero-seal {
+    width: 90px;
+    height: 90px;
+    top: 12px;
+    left: 12px;
+  }
+
+  .seal-number {
+    font-size: 16px;
+  }
+
+  .seal-text {
+    font-size: 9px;
+  }
+
+  /* Hero content */
+  .hero-content h2 {
+    font-size: 26px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  /* Section headings & spacing */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .section {
+    padding: 40px 14px;
+  }
+
+  /* Cards — full width on small phones */
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact form */
+  .contact-form-container {
+    padding: 20px;
+  }
+
+  /* Footer payment icons — slightly smaller */
+  .payment-icons .fa-brands,
+  .payment-icons .fa-solid {
+    font-size: 28px;
+  }
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+
+.testimonials {
+  background-color: var(--frost-white);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background-color: var(--silver-mist);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.testimonial-stars {
+  color: var(--secondary-color);
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: var(--slate-gray);
+  line-height: 1.7;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: var(--deep-navy);
+  font-size: 14px;
+  margin-top: auto;
+}
+
+/* Hero secondary call-to-action link */
+.hero-call-link {
+  color: var(--silver-mist);
+  text-decoration: none;
+  font-size: 15px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  opacity: 0.85;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
+}
+
+.hero-call-link:hover {
+  opacity: 1;
+  color: var(--secondary-color);
+}
