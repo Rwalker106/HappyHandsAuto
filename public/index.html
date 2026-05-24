@@ -146,7 +146,17 @@
         <div class="title">
           <h1>Happy Hands Auto Spa</h1>
         </div>
-        <ul class="navbar-buttons">
+        <button
+          class="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="navbar-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-buttons" id="navbar-menu">
           <li><a class="nav-btn-pri" href="#services">Services</a></li>
           <li><a class="nav-btn-pri" href="#packages">Packages</a></li>
           <li><a class="nav-btn-pri" href="#about">About Us</a></li>
@@ -350,7 +360,8 @@
               &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <blockquote class="testimonial-text">
-              &ldquo;Great Service! And highly recommended. I am a repeat customer.&rdquo;
+              &ldquo;Great Service! And highly recommended. I am a repeat
+              customer.&rdquo;
             </blockquote>
             <p class="testimonial-author">&mdash; Berteau J., Dacula, GA</p>
           </div>
@@ -359,20 +370,22 @@
               &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <blockquote class="testimonial-text">
-              &ldquo;Excellent work on my luxury vehicle &mdash; the ceramic coating was worth it. I recommend Happy Hands Auto Spa.&rdquo;
+              &ldquo;Excellent work on my luxury vehicle &mdash; the ceramic
+              coating was worth it. I recommend Happy Hands Auto Spa.&rdquo;
             </blockquote>
-            <p class="testimonial-author">
-              &mdash; Stan A., Buford, GA
-            </p>
+            <p class="testimonial-author">&mdash; Stan A., Buford, GA</p>
           </div>
           <div class="testimonial-card">
             <div class="testimonial-stars" aria-label="5 out of 5 stars">
               &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <blockquote class="testimonial-text">
-              &ldquo;My car was a mess. But after the detailing, it looked brand new! Highly recommend Happy Hands Auto Spa.&rdquo;
+              &ldquo;My car was a mess. But after the detailing, it looked brand
+              new! Highly recommend Happy Hands Auto Spa.&rdquo;
             </blockquote>
-            <p class="testimonial-author">&mdash; Moriah J., Lawrenceville, GA</p>
+            <p class="testimonial-author">
+              &mdash; Moriah J., Lawrenceville, GA
+            </p>
           </div>
         </div>
       </section>
@@ -523,6 +536,26 @@
         <script>
           document.getElementById("current-year").textContent =
             new Date().getFullYear();
+
+          (function () {
+            var hamburger = document.querySelector(".hamburger");
+            var navbar = document.querySelector(".navbar");
+            var navLinks = document.querySelectorAll(
+              ".navbar-buttons .nav-btn-pri",
+            );
+
+            hamburger.addEventListener("click", function () {
+              var isOpen = navbar.classList.toggle("nav-open");
+              hamburger.setAttribute("aria-expanded", isOpen);
+            });
+
+            navLinks.forEach(function (link) {
+              link.addEventListener("click", function () {
+                navbar.classList.remove("nav-open");
+                hamburger.setAttribute("aria-expanded", "false");
+              });
+            });
+          })();
         </script>
       </footer>
     </main>
