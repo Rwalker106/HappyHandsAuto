@@ -960,6 +960,42 @@ h2 {
   margin-top: auto;
 }
 
+/* ============================================================
+   BLOG SECTION (Soro embed)
+   ============================================================ */
+
+.soro-blog-section {
+  background-color: var(--frost-white);
+  border-top: 4px solid var(--secondary-color);
+  border-bottom: 1px solid var(--silver-mist);
+}
+
+.soro-blog-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.soro-blog-subtitle {
+  color: var(--slate-gray);
+  font-size: 17px;
+  margin-bottom: 40px;
+  margin-top: -16px;
+}
+
+@media (max-width: 768px) {
+  .soro-blog-inner {
+    padding: 50px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .soro-blog-inner {
+    padding: 40px 14px;
+  }
+}
+
 /* Hero secondary call-to-action link */
 .hero-call-link {
   color: var(--silver-mist);
