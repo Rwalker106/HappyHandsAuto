@@ -1,1 +1,0 @@
-This folder holds the HTML and CSS for the project in question
